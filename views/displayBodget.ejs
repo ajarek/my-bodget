@@ -1,0 +1,72 @@
+    <%-include('./partials/header')%>
+    <%-include('./partials/navbar')%>
+    <div class="container-fluid py-4">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-money-bill-wave fs-2 mx-2 text-success"></i>
+        <h1>My Budget</h1>
+      </div>
+      <table class="table table-success table-striped table-hover " id="myTable">
+        <thead>
+          <% let arrIncome=[]%>
+          <% let arrExpenses=[]%>
+          <% let result=0%>
+
+          <% budgets.forEach(budget=>{%>
+          <% arrIncome.push(budget.income)%>
+          <% arrExpenses.push(budget.expenses)%>
+          <%})%>
+          <% arrIncome=arrIncome.map(Number)%>
+          <% arrExpenses=arrExpenses.map(Number)%>
+
+          <% result=arrIncome.reduce((acu,value,index,arr)=>(acu+value))-arrExpenses.reduce((acu,value,index,arr)=>(acu+value))%>
+          <tr>
+            <th scope="col" class="bg-warning"> Balance= <%=result.toFixed(2)%> PLN</th>
+          </tr>
+
+          <tr>
+            <th scope="col">Date Operation</th>
+            <th scope="col">Income</th>
+            <th scope="col">Expenses</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+
+        <% budgets.forEach(bdg=>{%>
+        <tbody>
+          <tr>
+            <td><%= bdg.dateOperation.toISOString().split('T')[0] %></td>
+            <td><%= bdg.income %></td>
+            <td><%= bdg.expenses %></td>
+            <td><%= bdg.description %></td>
+            <td><a href="/delete/<%=bdg._id%>"
+                class="btn-md btn-danger px-2 py-1 rounded-1 text-decoration-none">Delete</a></td>
+          </tr>
+        </tbody>
+        <%})%>
+      </table>
+    </div>
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[3];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+    <%-include('./partials/footer')%>
+    </body>
+
+    </html>

@@ -1,0 +1,29 @@
+<%-include('./partials/header')%>
+<%-include('./partials/navbarOperation')%>
+<div class="container py-4">
+    <div class="d-flex align-items-center">
+        <i class="fas fa-balance-scale-left fs-2 mx-2 text-success"></i>
+        
+        <h1>Add an Operation</h1>
+    </div>
+    <form action="/compose/" method="POST">
+        <div class="mb-3">
+            <label for="dateOperation" class="form-label">Add Date</label>
+            <input type="date" class="form-control" name="dateOperation"  >
+        </div>
+        <div class="mb-3">
+            <label for="income" class="form-label">Add Income</label>
+            <input type="number" class="form-control" name="income" step="0.01">
+        </div>
+        <div class="mb-3">
+            <label for="expenses" class="form-label">Add Expenses</label>
+            <input type="number" class="form-control" name="expenses"step="0.01">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Add Description</label>
+            <input type="text" class="form-control" name="description">
+        </div>
+        
+        <button type="submit" class="btn btn-success">Save Operation</button>
+    </form>
+<%-include('./partials/footer')%>
