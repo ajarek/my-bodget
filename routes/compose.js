@@ -7,7 +7,7 @@ router.get('/compose',(req,res)=>{
 .post('/compose',(req,res)=>{
     const{dateOperation,income,expenses,description}=req.body
     if(!dateOperation || !income || !expenses || !description )
-     return res.send('Plase enter all the required credetnials!')
+     return res.send('Plese enter the required credetnials!')
     
      const newList =new List({dateOperation,income,expenses,description})
      newList.save()

@@ -24,7 +24,7 @@
           </tr>
 
           <tr>
-            <th scope="col">Date Operation</th>
+            <th scope="col">Date of Operation</th>
             <th scope="col">Income</th>
             <th scope="col">Expenses</th>
             <th scope="col">Description</th>
@@ -35,6 +35,7 @@
         <% budgets.forEach(bdg=>{%>
         <tbody>
           <tr>
+            
             <td><%= bdg.dateOperation.toISOString().split('T')[0] %></td>
             <td><%= bdg.income %></td>
             <td><%= bdg.expenses %></td>
